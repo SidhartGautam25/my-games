@@ -1,0 +1,38 @@
+.row{
+    width: 250px;
+    height:80px;
+    
+    
+  }
+  .mydiv{
+    width:80px;
+    height:80px;
+    border:2px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 80px;
+    color:black;
+    font-size: 20px;
+    background-color: rgb(254, 253, 255);
+  }
+  .winner{
+    width:600px;
+    height:150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    font-size: 25px;
+    
+
+  }
+  .maindiv{
+    width:95%;
+    height:94vh;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }

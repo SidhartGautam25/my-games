@@ -1,94 +1,135 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+import './mycss.css'
+import { useState } from 'react'
+
+
+
+
 
 export default function Home() {
+  console.log("updated");
+  
+  const [arr, setArr] = useState(
+    [null,null,null,null,null,null,null,null,null]
+  );
+  const [turn,setTurn]=useState(1);
+  const [winner,setWinner]=useState(0);
+
+
+  function checkWinner(){
+
+    if(arr[0] && arr[1] && arr[2] && arr[0]===arr[1] && arr[0]==arr[2]){
+      console.log("winner1");
+        //setWinner(1);
+        return 1;
+    }else if( arr[0] && arr[3] && arr[6] && arr[0]===arr[3] && arr[0]===arr[6] && arr[0] !=''){
+      console.log("winner2");
+      //setWinner(1);
+      return 1;
+    }else if(arr[0] && arr[4] && arr[8] && arr[0]===arr[4] && arr[0]===arr[8]  && arr[0] !=''){
+      console.log("winner3");
+      //setWinner(1);
+      return 1;
+    }else if( arr[1] && arr[4] && arr[7] && arr[1]===arr[4] && arr[1]===arr[7]  && arr[1] !=''){
+      console.log("winner4");
+      //setWinner(1);
+      return 1;
+    }else if(arr[2] && arr[5] && arr[8] && arr[2]===arr[5] && arr[2]===arr[8]  && arr[2] !=''){
+      console.log("winner5");
+      //setWinner(1);
+      return 1;
+    }else if(arr[3] && arr[4] && arr[5] &&  arr[3]==arr[4] && arr[3]===arr[5]  && arr[3] !=''){
+      console.log("winner6");
+      //setWinner(1);
+      return 1;
+    }else if(arr[6] && arr[7] && arr[8] && arr[6]===arr[7] && arr[6]===arr[8]  && arr[6] !=''){
+      console.log("winner7");
+      //setWinner(1);
+      return 1;
+    }else if(arr[6] && arr[4] && arr[2] && arr[6]===arr[4] && arr[6]===arr[2]  && arr[6] !=''){
+      console.log("winner8");
+      //setWinner(1);
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+  const win=checkWinner();
+  
+
+
+
+
+  
+  function handleupdate(index) {
+    console.log("working");
+    const updated = arr.map((c, i) => {
+      if (i == index && turn%2==0 && !arr[i]) {
+        setTurn(turn+1)
+        return 'X';
+      } else if(i==index && turn%2==1 && !arr[i]) {
+        setTurn(turn+1)
+        return 'O';
+      } else{
+        return c;
+      }
+    });
+    setArr(updated);
+    //checkWinner();
+    // if(arr[0]===arr[1] && arr[0]==arr[2]  && arr[0] !=''){
+    //   console.log("winner1");
+    //      setWinner(1);
+    // }else if(arr[0]===arr[3] && arr[0]===arr[6] && arr[0] !=''){
+    //   console.log("winner2");
+    //   setWinner(1);
+    // }else if(arr[0]===arr[4] && arr[0]===arr[8]  && arr[0] !=''){
+    //   console.log("winner3");
+    //   setWinner(1);
+    // }else if(arr[1]===arr[4] && arr[1]===arr[7]  && arr[1] !=''){
+    //   console.log("winner4");
+    //   setWinner(1);
+    // }else if(arr[2]===arr[5] && arr[2]===arr[8]  && arr[2] !=''){
+    //   console.log("winner5");
+    //   setWinner(1);
+    // }else if(arr[3]==arr[4] && arr[3]===arr[5]  && arr[3] !=''){
+    //   console.log("winner6");
+    //   setWinner(1);
+    // }else if(arr[6]===arr[7] && arr[6]===arr[8]  && arr[6] !=''){
+    //   console.log("winner7");
+    //   setWinner(1);
+    // }else if(arr[6]===arr[4] && arr[6]===arr[2]  && arr[6] !=''){
+    //   console.log("winner8");
+    //   setWinner(1);
+    // }
+    console.log(winner);
+  }
+
+  
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
+    <main>
+      <div className='maindiv'>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+      <div className='row'>
+        <button onClick={() => {handleupdate(0);checkWinner();}} className='mydiv'>{arr[0]}</button>
+        <button onClick={() => {handleupdate(1);checkWinner();}}  className='mydiv'>{arr[1]}</button>
+        <button onClick={() => {handleupdate(2);checkWinner();}}  className='mydiv'>{arr[2]}</button>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className='row'>
+        <button onClick={() => {handleupdate(3);checkWinner();}}  className='mydiv'>{arr[3]}</button>
+        <button onClick={() => {handleupdate(4);checkWinner();}}  className='mydiv'>{arr[4]}</button>
+        <button onClick={() => {handleupdate(5);checkWinner();}}  className='mydiv'>{arr[5]}</button>
       </div>
+      <div className='row'>
+        <button onClick={() => {handleupdate(6);checkWinner();}}  className='mydiv'>{arr[6]}</button>
+        <button onClick={() => {handleupdate(7);checkWinner();}}  className='mydiv'>{arr[7]}</button>
+        <button onClick={() => {handleupdate(8);checkWinner();}}  className='mydiv'>{arr[8]}</button>
+      </div>
+      </div>
+      
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      {win==1 && turn%2==0 && (<div className='winner'>Congratulation O,you are the winner &#128293;&#128293;&#128293;</div>)}
+      {win==1 && turn%2==1 && (<div className='winner'>Congratulation X,you are the winner &#128293;&#128293;&#128293;</div>)}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
       </div>
     </main>
   )
