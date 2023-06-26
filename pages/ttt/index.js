@@ -1,12 +1,12 @@
 'use client'
+import Navbar from '@/components/navbar/Navbar';
 import './mycss.css'
 import { useState } from 'react'
 
 
 
 
-
-export default function Home() {
+export default function Ttt() {
   console.log("updated");
   
   const [arr, setArr] = useState(
@@ -106,8 +106,10 @@ export default function Home() {
 
   
   return (
-    <main>
+      <>
+      <Navbar/>
       <div className='maindiv'>
+        
         <div>
       <div className='row'>
         <button onClick={() => {handleupdate(0);checkWinner();}} className='mydiv'>{arr[0]}</button>
@@ -131,6 +133,7 @@ export default function Home() {
       {win==1 && turn%2==1 && (<div className='winner'>Congratulation X,you are the winner &#128293;&#128293;&#128293;</div>)}
 
       </div>
-    </main>
+      </>
+    
   )
 }
